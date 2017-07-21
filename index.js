@@ -10,6 +10,7 @@ const cors = require('cors');
 
 //router imports
 const userRouter = require('./routers/user.router');
+const postRouter = require('./routers/post.router');
 
 //wire up the middleware
 server.use(morgan('dev'));
@@ -17,6 +18,7 @@ server.use(cors());
 
 //wire up routers
 server.use(userRouter);
+server.use(postRouter);
 
 
 server.get('/', (req, res) => {
