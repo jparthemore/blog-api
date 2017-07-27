@@ -15,6 +15,7 @@ mongoose.connect(mongoURI,{
 //middlware imports
 const morgan = require('morgan');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 //router imports
 const userRouter = require('./routers/user.router');
@@ -23,6 +24,8 @@ const postRouter = require('./routers/post.router');
 //wire up the middleware
 server.use(morgan('dev'));
 server.use(cors());
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true })); //need this if use forms
 
 //wire up routers
 server.use(userRouter);
