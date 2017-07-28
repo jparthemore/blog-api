@@ -12,8 +12,13 @@ router.get('/posts',(req,res)=>{
   });
 });
 
-router.get('/posts/:postId',(req,rsp)=>{
-  //User.find
+router.get('/posts/:postId',(req,res)=>{
+  Post.find({_id: req.params.postId},function(err,docs){
+    if(err)return res.status(500).json({err: err});
+    return res.status(200).json({
+      posts: docs
+    });
+  });
 });
 
 router.post('/posts',(req,res)=>{
@@ -35,8 +40,13 @@ router.put('/posts/:postId',(req,res)=>{
   });
 });
 
-router.delete('/posts/:postId',(req,rsp)=>{
-  rsp.send('deleting a post');
+router.delete('/posts/:postId',(req,res)=>{
+  Post.findOneAndRemove({},function(err,removedPost){
+    if(err) return res.status(500).json({err: err});
+    return res.status(200).json({
+      msg: "Post successfully removed"
+    });
+  });
 });
 
 module.exports = router;
