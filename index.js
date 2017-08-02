@@ -3,8 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const server = express();
 
-const { mongoURI } = require('./credentials');//destructuring new JS thing name has to be same and must be an object
+//const { mongoURI } = require('./credentials');//destructuring new JS thing name has to be same and must be an object
 //const mongoURIT = require('./credentials').mongoURI; /;old style still works
+const mongoURI = process.env.MONGOURI || require('./credentials').mongoURI;
 const port = process.env.PORT || 8080;
 
 //connect to the database
