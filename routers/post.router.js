@@ -41,7 +41,7 @@ router.put('/posts/:postId',(req,res)=>{
 });
 
 router.delete('/posts/:postId',(req,res)=>{
-  Post.findOneAndRemove({},function(err,removedPost){
+  Post.findOneAndRemove({_id: req.params.postId},function(err,removedPost){
     if(err) return res.status(500).json({err: err});
     return res.status(200).json({
       msg: "Post successfully removed"
